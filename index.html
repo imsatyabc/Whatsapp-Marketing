@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+      th, td{
+        padding: 10px;
+        border: 1px solid black
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>
+          SNo
+        </th>
+        <th>
+          Number
+        </th>
+        <th>
+          Action
+        </th>
+      </tr>
+   
+
+    </table>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script>
+      fetch('data.txt').then(r => r.text()).then(data => displayData(data))
+
+      rows = '';
+      function displayData(data){
+        mobs = data.split('\n')
+        mobs.forEach((v, i) => {
+          rows +=  `
+            <tr>
+              <td>
+                ${i+1}
+              </td>
+              <td>
+                ${v}
+              </td>
+              <td>
+                <a href="https://api.whatsapp.com/send/?phone=${v}&text&app_absent=0" target="_blank" class="btn btn-primary btn-sm"> Open </a>
+              </td>
+            </tr>
+          `
+        })
+        $('table').html($('table').html() + rows)
+      }
+
+    </script>
+  </body>
+</html>
